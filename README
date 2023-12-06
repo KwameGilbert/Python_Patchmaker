@@ -1,1 +1,66 @@
-README.MD
+Certainly! Here's the `README.md` file in Markdown format:
+
+```markdown
+# Patchwork Program
+
+This Python program generates and allows user interaction with patchworks based on specified parameters.
+
+## Getting Started
+
+These instructions will help you run the program on your local machine.
+
+### Prerequisites
+
+You need to have Python installed on your machine.
+
+```bash
+pip install graphics.py
+```
+
+### Running the Program
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/your-username/patchwork-program.git
+   ```
+
+2. **Navigate to the project directory:**
+
+   ```bash
+   cd patchwork-program
+   ```
+
+3. **Run the program:**
+
+   ```bash
+   python patchwork_program.py
+   ```
+
+## Usage
+
+- Follow the on-screen prompts to input the patchwork size and colors.
+- Input your student number when prompted.
+- Interact with the patchwork using both mouse clicks and keyboard inputs.
+
+## Features
+
+- Patchwork generation based on user input and student number.
+- Selection and editing modes for user interaction.
+- Mouse and keyboard input handling.
+- Visual representation with graphics.
+
+## Additional Challenge Feature
+
+- After generating the patchwork, the program allows the user to edit it using mouse clicks and keyboard inputs.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+
+## Acknowledgments
+
+- [Zelle's Graphics package](https://mcsp.wartburg.edu/zelle/python/graphics.py)
+```
+
+Feel free to customize it further based on your specific project details.
