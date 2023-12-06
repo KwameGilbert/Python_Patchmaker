@@ -108,7 +108,7 @@ def draw_patchwork(graphics_window, patchwork_size, colors, antepenultimate, pen
 
             design_index = (penultimate + row + col) % 2 + 1
 
-            patch = draw_patch(win, x, y, color, design_index)
+            patch = draw_patch(graphics_window, x, y, color, design_index)
             patches.append(patch)
 
     return patches
@@ -117,16 +117,16 @@ def draw_patchwork(graphics_window, patchwork_size, colors, antepenultimate, pen
 
 ##Allow mouse and keyboard inputs and edits
 
-def create_button(win, x, y, label):
+def create_button(graphics_window, x, y, label):
     # Function to create a button at the specified position with a label
     button = Rectangle(Point(x, y), Point(x + 60, y + 30))
     button.setFill("black")
-    button.draw(win)
+    button.draw(graphics_window)
 
     text = Text(Point(x + 30, y + 15), label)
     text.setTextColor("white")
     text.setSize(12)
-    text.draw(win)
+    text.draw(graphics_window)
 
     return button
 
@@ -154,17 +154,17 @@ def main():
     while True:
         try:
             # Draw the patchwork
-            patches = draw_patchwork(win, patchwork_size, colors, antepenultimate, penultimate, final)
+            patches = draw_patchwork(graphics_window, patchwork_size, colors, antepenultimate, penultimate, final)
 
             # Create buttons for selection mode
-            ok_button = create_button(win, 10, 10, "OK")
-            close_button = create_button(win, win.getWidth() - 70, 10, "Close")
+            ok_button = create_button(graphics_window, 10, 10, "OK")
+            close_button = create_button(graphics_window, graphics_window.getWidth() - 70, 10, "Close")
 
             # Initial mode is selection mode
             mode = "selection"
 
             while True:
-                click_point = win.getMouse()
+                click_point = graphics_window.getMouse()
 
                 if mode == "selection":
                     button_clicked = handle_mouse_click(patches, [ok_button, close_button], click_point)
@@ -175,15 +175,15 @@ def main():
                         close_button.undraw()
                         continue
                     elif button_clicked == "Close":
-                        win.close()
+                        graphics_window.close()
                         break
 
                 elif mode == "edit":
-                    key_pressed = win.getKey()
+                    key_pressed = graphics_window.getKey()
                     if key_pressed == "s":
                         mode = "selection"
-                        ok_button.draw(win)
-                        close_button.draw(win)
+                        ok_button.draw(graphics_window)
+                        close_button.draw(graphics_window)
                     elif key_pressed == "d":
                         for patch in patches:
                             patch.setWidth(1)
@@ -193,28 +193,28 @@ def main():
                             if patch.getWidth() == 3:
                                 design_index = penultimate
                                 patch.undraw()
-                                patch = draw_patch(win, patch.getP1().getX(), patch.getP1().getY(), patch.getFill(), design_index)
+                                patch = draw_patch(graphics_window, patch.getP1().getX(), patch.getP1().getY(), patch.getFill(), design_index)
                                 patches[patches.index(patch)] = patch
                     elif key_pressed == "f":
                         for patch in patches:
                             if patch.getWidth() == 3:
                                 design_index = final
                                 patch.undraw()
-                                patch = draw_patch(win, patch.getP1().getX(), patch.getP1().getY(), patch.getFill(), design_index)
+                                patch = draw_patch(graphics_window, patch.getP1().getX(), patch.getP1().getY(), patch.getFill(), design_index)
                                 patches[patches.index(patch)] = patch
                     elif key_pressed == "q":
                         for patch in patches:
                             if patch.getWidth() == 3:
                                 design_index = 0
                                 patch.undraw()
-                                patch = draw_patch(win, patch.getP1().getX(), patch.getP1().getY(), patch.getFill(), design_index)
+                                patch = draw_patch(graphics_window, patch.getP1().getX(), patch.getP1().getY(), patch.getFill(), design_index)
                                 patches[patches.index(patch)] = patch
                     elif key_pressed in colors:
                         for patch in patches:
                             if patch.getWidth() == 3:
                                 color = key_pressed
                                 patch.undraw()
-                                patch = draw_patch(win, patch.getP1().getX(), patch.getP1().getY(), color, patch.getOutlineWidth())
+                                patch = draw_patch(graphics_window, patch.getP1().getX(), patch.getP1().getY(), color, patch.getOutlineWidth())
                                 patches[patches.index(patch)] = patch
                     elif key_pressed == "x":
                         # Your custom operation (use your imagination)
