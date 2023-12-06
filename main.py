@@ -71,7 +71,7 @@ graphics_window = setup_graphics_window(patchwork_size)
 #Draw the patchwork
 
 #import libraries
-import graphics
+from graphics import *
 
 def draw_patch(graphics_window, x, y, color, design):
     # Function to draw a single patch at the specified position with a given colour and design
