@@ -119,7 +119,7 @@ def draw_patchwork(graphics_window, patchwork_size, patchwork_colors, antepenult
 
 def create_button(graphics_window, x, y, label):
     # Function to create a button at the specified position with a label
-    button = Rectangle(Point(x, y), Point(x + 60, y + 30))
+    button = graphics.Rectangle(Point(x, y), Point(x + 60, y + 30))
     button.setFill("black")
     button.draw(graphics_window)
 
