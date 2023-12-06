@@ -79,13 +79,13 @@ def draw_patch(graphics_window, x, y, color, design):
 
     if design == 1:
         # Draw a rectangle
-        patch = Rectangle(Point(x, y), Point(x + patch_size, y + patch_size))
+        patch = graphics.Rectangle(Point(x, y), Point(x + patch_size, y + patch_size))
     elif design == 2:
         # Draw an oval
-        patch = Oval(Point(x, y), Point(x + patch_size, y + patch_size))
+        patch = graphics.Oval(Point(x, y), Point(x + patch_size, y + patch_size))
     else:
         # Draw a polygon (triangle)
-        patch = Polygon(Point(x, y), Point(x + patch_size, y), Point(x + patch_size / 2, y + patch_size))
+        patch = graphics.Polygon(Point(x, y), Point(x + patch_size, y), Point(x + patch_size / 2, y + patch_size))
 
     patch.setFill(color)
     patch.draw(graphics_window)
