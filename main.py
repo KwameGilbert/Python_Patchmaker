@@ -26,7 +26,7 @@ patchwork_size = get_valid_size()
 patchwork_colors = get_valid_colors()
 
 print("Patchwork size:", patchwork_size)
-print("Patchwork colors:", patchwork_colors)
+print("Patchwork patchwork_colors:", patchwork_colors)
 
 # Example usage for student number input:
 student_number = input("Enter your student number: ")
@@ -92,7 +92,7 @@ def draw_patch(graphics_window, x, y, color, design):
 
     return patch
 
-def draw_patchwork(graphics_window, patchwork_size, colors, antepenultimate, penultimate, final):
+def draw_patchwork(graphics_window, patchwork_size, patchwork_colors, antepenultimate, penultimate, final):
     # Function to draw the entire patchwork based on the extracted digits
     patch_size = 100
     patches = []
@@ -104,7 +104,7 @@ def draw_patchwork(graphics_window, patchwork_size, colors, antepenultimate, pen
 
             # Use the extracted digits to determine color and design
             color_index = (antepenultimate + row + col) % 3
-            color = colors[color_index]
+            color = patchwork_colors[color_index]
 
             design_index = (penultimate + row + col) % 2 + 1
 
@@ -154,9 +154,9 @@ def main():
     while True:
         try:
             # Draw the patchwork
-            patches = draw_patchwork(graphics_window, patchwork_size, colors, antepenultimate, penultimate, final)
+            patches = draw_patchwork(graphics_window, patchwork_size, patchwork_colors, antepenultimate, penultimate, final)
 
-            # Create buttons for selection mode
+            # Create buttons for the selection mode
             ok_button = create_button(graphics_window, 10, 10, "OK")
             close_button = create_button(graphics_window, graphics_window.getWidth() - 70, 10, "Close")
 
