@@ -79,13 +79,13 @@ def draw_patch(graphics_window, x, y, color, design):
 
     if design == 1:
         # Draw a rectangle
-        patch = graphics.Rectangle(Point(x, y), Point(x + patch_size, y + patch_size))
+        patch = Rectangle(Point(x, y), Point(x + patch_size, y + patch_size))
     elif design == 2:
         # Draw an oval
-        patch = graphics.Oval(Point(x, y), Point(x + patch_size, y + patch_size))
+        patch = Oval(Point(x, y), Point(x + patch_size, y + patch_size))
     else:
         # Draw a polygon (triangle)
-        patch = graphics.Polygon(Point(x, y), Point(x + patch_size, y), Point(x + patch_size / 2, y + patch_size))
+        patch = Polygon(Point(x, y), Point(x + patch_size, y), Point(x + patch_size / 2, y + patch_size))
 
     patch.setFill(color)
     patch.draw(graphics_window)
@@ -119,11 +119,11 @@ def draw_patchwork(graphics_window, patchwork_size, patchwork_colors, antepenult
 
 def create_button(graphics_window, x, y, label):
     # Function to create a button at the specified position with a label
-    button = graphics.Rectangle(Point(x, y), Point(x + 60, y + 30))
+    button = Rectangle(Point(x, y), Point(x + 60, y + 30))
     button.setFill("black")
     button.draw(graphics_window)
 
-    text = graphics.Text(Point(x + 30, y + 15), label)
+    text = Text(Point(x + 30, y + 15), label)
     text.setTextColor("white")
     text.setSize(12)
     text.draw(graphics_window)
