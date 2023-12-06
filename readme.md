@@ -1,4 +1,3 @@
-Certainly! Here's the `README.md` file in Markdown format:
 
 ```markdown
 # Patchwork Program
@@ -11,7 +10,7 @@ These instructions will help you run the program on your local machine.
 
 ### Prerequisites
 
-You need to have Python installed on your machine.
+You need to have Python installed on your machine. Additionally, you'll need the `graphics.py` library.
 
 ```bash
 pip install graphics.py
@@ -39,16 +38,16 @@ pip install graphics.py
 
 ## Usage
 
-- Follow the on-screen prompts to input the patchwork size and colors.
-- Input your student number when prompted.
-- Interact with the patchwork using both mouse clicks and keyboard inputs.
+1. Follow the on-screen prompts to input the patchwork size and colors.
+2. Input your student number when prompted.
+3. Interact with the patchwork using both mouse clicks and keyboard inputs.
 
 ## Features
 
-- Patchwork generation based on user input and student number.
-- Selection and editing modes for user interaction.
-- Mouse and keyboard input handling.
-- Visual representation with graphics.
+- **Patchwork Generation:** Based on user input and student number.
+- **Selection and Editing Modes:** For user interaction.
+- **Mouse and Keyboard Input Handling:** Allows for a dynamic experience.
+- **Visual Representation:** Utilizes the Zelle's Graphics package.
 
 ## Additional Challenge Feature
 
