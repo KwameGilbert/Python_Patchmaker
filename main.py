@@ -68,13 +68,13 @@ graphics_window = setup_graphics_window(patchwork_size)
 # You can now use `graphics_window` for drawing patches and displaying the patchwork.
 # Don't forget to close the window when you're done: `graphics_window.close()`
 
-#Draw the patch work
+#Draw the patchwork
 
 #import libraries
-from graphics import GraphWin, Point, Rectangle, Oval, Polygon, Line
+import graphics
 
 def draw_patch(graphics_window, x, y, color, design):
-    # Function to draw a single patch at the specified position with given color and design
+    # Function to draw a single patch at the specified position with a given colour and design
     patch_size = 100
 
     if design == 1:
@@ -102,7 +102,7 @@ def draw_patchwork(graphics_window, patchwork_size, patchwork_colors, antepenult
             x = col * patch_size
             y = row * patch_size
 
-            # Use the extracted digits to determine color and design
+            # Use the extracted digits to determine the colour and design
             color_index = (antepenultimate + row + col) % 3
             color = patchwork_colors[color_index]
 
@@ -123,7 +123,7 @@ def create_button(graphics_window, x, y, label):
     button.setFill("black")
     button.draw(graphics_window)
 
-    text = Text(Point(x + 30, y + 15), label)
+    text = graphics.Text(Point(x + 30, y + 15), label)
     text.setTextColor("white")
     text.setSize(12)
     text.draw(graphics_window)
