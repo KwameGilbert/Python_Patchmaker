@@ -107,7 +107,13 @@ def draw_patchwork(win, patchwork_size, colors, antepenultimate, penultimate, fi
 
             draw_patch(win, x, y, color, design_index)
 
-# Draw the patchwork
-draw_patchwork(win, patchwork_size, colors, antepenultimate, penultimate, final)
+def main():
+    # Draw the patchwork
+    draw_patchwork(win, patchwork_size, colors, antepenultimate, penultimate, final)
 
+    # Display the window until the user clicks on it
+    win.getMouse()
+    win.close()
 
+if __name__ == "__main__":
+    main()
