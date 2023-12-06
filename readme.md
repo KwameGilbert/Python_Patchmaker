@@ -1,5 +1,4 @@
 
-```markdown
 # Patchwork Program
 
 This Python program generates and allows user interaction with patchworks based on specified parameters.
@@ -21,19 +20,19 @@ pip install graphics.py
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/patchwork-program.git
+   git clone https://github.com/KwameGilbert/Python_Patchmaker.git
    ```
 
 2. **Navigate to the project directory:**
 
    ```bash
-   cd patchwork-program
+   cd Python_Patchmaker
    ```
 
 3. **Run the program:**
 
    ```bash
-   python patchwork_program.py
+   python main.py
    ```
 
 ## Usage
