@@ -108,12 +108,26 @@ def draw_patchwork(win, patchwork_size, colors, antepenultimate, penultimate, fi
             draw_patch(win, x, y, color, design_index)
 
 def main():
-    # Draw the patchwork
-    draw_patchwork(win, patchwork_size, colors, antepenultimate, penultimate, final)
+    while True:
+        # Draw the patchwork
+        draw_patchwork(win, patchwork_size, colors, antepenultimate, penultimate, final)
 
-    # Display the window until the user clicks on it
-    win.getMouse()
-    win.close()
+        # Display the window until the user clicks on it
+        win.getMouse()
+        win.close()
+
+        while True: # Ask the user if they want to create another patchwork
+            another_patchwork = input("Do you want to create another patchwork? (yes/no): ").lower()
+            if another_patchwork == 'yes' or another_patchwork == 'no':  
+                break
+            else:
+                continue
+
+        if another_patchwork == 'yes':
+            continue
+        else:
+            break
+
 
 if __name__ == "__main__":
     main()
