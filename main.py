@@ -90,9 +90,12 @@ def draw_patch(win, x, y, color, design):
     patch.setFill(color)
     patch.draw(win)
 
+    return patch
+
 def draw_patchwork(win, patchwork_size, colors, antepenultimate, penultimate, final):
     # Function to draw the entire patchwork based on the extracted digits
     patch_size = 100
+    patches = []
 
     for row in range(patchwork_size):
         for col in range(patchwork_size):
@@ -105,28 +108,121 @@ def draw_patchwork(win, patchwork_size, colors, antepenultimate, penultimate, fi
 
             design_index = (penultimate + row + col) % 2 + 1
 
-            draw_patch(win, x, y, color, design_index)
+            patch = draw_patch(win, x, y, color, design_index)
+            patches.append(patch)
+
+    return patches
+
+
+
+##Allow mouse and keyboard inputs and edits
+
+def create_button(win, x, y, label):
+    # Function to create a button at the specified position with a label
+    button = Rectangle(Point(x, y), Point(x + 60, y + 30))
+    button.setFill("black")
+    button.draw(win)
+
+    text = Text(Point(x + 30, y + 15), label)
+    text.setTextColor("white")
+    text.setSize(12)
+    text.draw(win)
+
+    return button
+
+def handle_mouse_click(patches, buttons, click_point):
+    # Function to handle mouse click events
+    for patch in patches:
+        if patch.getP1().getX() <= click_point.getX() <= patch.getP2().getX() and \
+                patch.getP1().getY() <= click_point.getY() <= patch.getP2().getY():
+            # Toggle the selection of the clicked patch
+            if patch.getOutline() == "black":
+                patch.setWidth(1)  # Deselect
+                patch.setOutline("white")
+            else:
+                patch.setWidth(3)  # Select
+                patch.setOutline("black")
+
+    for button in buttons:
+        if button.getP1().getX() <= click_point.getX() <= button.getP2().getX() and \
+                button.getP1().getY() <= click_point.getY() <= button.getP2().getY():
+            return button.getText()  # Return the label of the clicked button
+
+    return None
 
 def main():
     while True:
-        # Draw the patchwork
-        draw_patchwork(win, patchwork_size, colors, antepenultimate, penultimate, final)
+        try:
+            # Draw the patchwork
+            patches = draw_patchwork(win, patchwork_size, colors, antepenultimate, penultimate, final)
 
-        # Display the window until the user clicks on it
-        win.getMouse()
-        win.close()
+            # Create buttons for selection mode
+            ok_button = create_button(win, 10, 10, "OK")
+            close_button = create_button(win, win.getWidth() - 70, 10, "Close")
 
-        while True: # Ask the user if they want to create another patchwork
-            another_patchwork = input("Do you want to create another patchwork? (yes/no): ").lower()
-            if another_patchwork == 'yes' or another_patchwork == 'no':  
-                break
-            else:
-                continue
+            # Initial mode is selection mode
+            mode = "selection"
 
-        if another_patchwork == 'yes':
-            continue
-        else:
-            break
+            while True:
+                click_point = win.getMouse()
+
+                if mode == "selection":
+                    button_clicked = handle_mouse_click(patches, [ok_button, close_button], click_point)
+
+                    if button_clicked == "OK":
+                        mode = "edit"
+                        ok_button.undraw()
+                        close_button.undraw()
+                        continue
+                    elif button_clicked == "Close":
+                        win.close()
+                        break
+
+                elif mode == "edit":
+                    key_pressed = win.getKey()
+                    if key_pressed == "s":
+                        mode = "selection"
+                        ok_button.draw(win)
+                        close_button.draw(win)
+                    elif key_pressed == "d":
+                        for patch in patches:
+                            patch.setWidth(1)
+                            patch.setOutline("white")
+                    elif key_pressed == "p":
+                        for patch in patches:
+                            if patch.getWidth() == 3:
+                                design_index = penultimate
+                                patch.undraw()
+                                patch = draw_patch(win, patch.getP1().getX(), patch.getP1().getY(), patch.getFill(), design_index)
+                                patches[patches.index(patch)] = patch
+                    elif key_pressed == "f":
+                        for patch in patches:
+                            if patch.getWidth() == 3:
+                                design_index = final
+                                patch.undraw()
+                                patch = draw_patch(win, patch.getP1().getX(), patch.getP1().getY(), patch.getFill(), design_index)
+                                patches[patches.index(patch)] = patch
+                    elif key_pressed == "q":
+                        for patch in patches:
+                            if patch.getWidth() == 3:
+                                design_index = 0
+                                patch.undraw()
+                                patch = draw_patch(win, patch.getP1().getX(), patch.getP1().getY(), patch.getFill(), design_index)
+                                patches[patches.index(patch)] = patch
+                    elif key_pressed in colors:
+                        for patch in patches:
+                            if patch.getWidth() == 3:
+                                color = key_pressed
+                                patch.undraw()
+                                patch = draw_patch(win, patch.getP1().getX(), patch.getP1().getY(), color, patch.getOutlineWidth())
+                                patches[patches.index(patch)] = patch
+                    elif key_pressed == "x":
+                        # Your custom operation (use your imagination)
+                        pass
+
+        except ValueError as e:
+                print(f"Error: {e}")
+                # Continue to the next iteration of the loop if there's an error
 
 if __name__ == "__main__":
     main()
