@@ -49,7 +49,7 @@ print("Penultimate digit: ", penultimate)
 print("Final digit: ", final)
 
 #Setup graphics window
-from graphics import GraphWin
+from graphics import GraphWin, Point, Rectangle, Oval, Polygon, Line, Text
 
 def setup_graphics_window(patchwork_size):
     # Calculate the window size based on the patchwork size
@@ -71,7 +71,7 @@ graphics_window = setup_graphics_window(patchwork_size)
 #Draw the patchwork
 
 #import libraries
-from graphics import GraphWin, Point, Rectangle, Oval, Polygon, Line, Text
+
 
 def draw_patch(graphics_window, x, y, color, design):
     # Function to draw a single patch at the specified position with a given colour and design
