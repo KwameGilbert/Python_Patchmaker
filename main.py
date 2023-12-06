@@ -73,7 +73,7 @@ graphics_window = setup_graphics_window(patchwork_size)
 #import libraries
 from graphics import GraphWin, Point, Rectangle, Oval, Polygon, Line
 
-def draw_patch(win, x, y, color, design):
+def draw_patch(graphics_window, x, y, color, design):
     # Function to draw a single patch at the specified position with given color and design
     patch_size = 100
 
@@ -88,11 +88,11 @@ def draw_patch(win, x, y, color, design):
         patch = Polygon(Point(x, y), Point(x + patch_size, y), Point(x + patch_size / 2, y + patch_size))
 
     patch.setFill(color)
-    patch.draw(win)
+    patch.draw(graphics_window)
 
     return patch
 
-def draw_patchwork(win, patchwork_size, colors, antepenultimate, penultimate, final):
+def draw_patchwork(graphics_window, patchwork_size, colors, antepenultimate, penultimate, final):
     # Function to draw the entire patchwork based on the extracted digits
     patch_size = 100
     patches = []
