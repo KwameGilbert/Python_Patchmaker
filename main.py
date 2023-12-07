@@ -86,10 +86,10 @@ def draw_patch(graphics_window, x, y, color, design):
     else:
         # Draw a polygon (triangle)
         patch = Polygon(Point(x, y), Point(x + patch_size, y), Point(x + patch_size / 2, y + patch_size))
-
+    patch.setOutline = "black"
     patch.setFill(color)
     patch.draw(graphics_window)
-
+    
     return patch
 
 def draw_patchwork(graphics_window, patchwork_size, patchwork_colors, antepenultimate, penultimate, final):
@@ -136,7 +136,7 @@ def handle_mouse_click(patches, buttons, click_point):
         if patch.getP1().getX() <= click_point.getX() <= patch.getP2().getX() and \
                 patch.getP1().getY() <= click_point.getY() <= patch.getP2().getY():
             # Toggle the selection of the clicked patch
-            if patch.setOutline() == "black":
+            if patch.outline() == "black":
                 patch.setWidth(1)  # Deselect
                 patch.setOutline("white")
             else:
