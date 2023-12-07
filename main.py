@@ -136,7 +136,7 @@ def handle_mouse_click(patches, buttons, click_point):
         if patch.getP1().getX() <= click_point.getX() <= patch.getP2().getX() and \
                 patch.getP1().getY() <= click_point.getY() <= patch.getP2().getY():
             # Toggle the selection of the clicked patch
-            if patch.getOutline() == "black":
+            if patch.Outline() == "black":
                 patch.setWidth(1)  # Deselect
                 patch.setOutline("white")
             else:
