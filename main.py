@@ -133,15 +133,15 @@ def create_button(graphics_window, x, y, label):
 def handle_mouse_click(patches, buttons, click_point):
     # Function to handle mouse click events
     for patch in patches:
-        if patch.getP1().getX() <= click_point.getX() <= patch.getP2().getX() and \
-                patch.getP1().getY() <= click_point.getY() <= patch.getP2().getY():
-            # Toggle the selection of the clicked patch
-            if patch.getWidth() == 1:
-                patch.setWidth(1)  # Deselect
-                patch.setOutline("white")
-            else:
+        if patch.getWidth() == 1:  # This check assumes you've set the width attribute for patches
+            if patch.getP1().getX() <= click_point.getX() <= patch.getP2().getX() and \
+                    patch.getP1().getY() <= click_point.getY() <= patch.getP2().getY():
+                # Toggle the selection of the clicked patch
                 patch.setWidth(3)  # Select
                 patch.setOutline("black")
+            else:
+                patch.setWidth(1)  # Deselect
+                patch.setOutline("white")
 
     for button in buttons:
         if button.getP1().getX() <= click_point.getX() <= button.getP2().getX() and \
@@ -149,7 +149,6 @@ def handle_mouse_click(patches, buttons, click_point):
             return button.getText()  # Return the label of the clicked button
 
     return None
-
 def main():
     while True:
         try:
